@@ -1,0 +1,12 @@
+---
+
+- name: Конфигурация NFS-сервера
+  hosts: nfs_servers
+  roles:
+    - nfs_server
+
+- name: Конфигурация NFS-клиента
+  hosts: nfs_clients
+  roles:
+    - nfs_client
+

@@ -1,0 +1,25 @@
+---
+- name: Установить пакеты NFS-клиента
+  ansible.builtin.apt:
+    name: nfs-common
+    state: present
+
+- name: Создать директорию для монтирования
+  ansible.builtin.file:
+    path: /mnt/upload
+    state: directory
+    mode: '0777'
+
+- name: Добавить точку монтирования
+  ansible.builtin.lineinfile:
+    path: /etc/fstab
+    line: 10.160.107.239:/srv/share/ /mnt nfs vers=3,noauto,x-systemd.automount 0 0
+    state: present
+
+- name: Смонтировать NFS-директорию
+  ansible.builtin.mount:
+    path: /mnt/upload
+    src: 10.160.107.239:/srv/share/upload
+    fstype: nfs
+    opts: defaults
+    state: mounted

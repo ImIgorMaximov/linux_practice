@@ -1,0 +1,32 @@
+---
+
+- name: Установить пакеты NFS
+  ansible.builtin.apt:
+    name: nfs-kernel-server
+    state: present
+    
+- name: Создать экспортируемую директорию
+  ansible.builtin.file:
+    path: /srv/share/upload
+    state: directory
+    owner: nobody
+    group: nogroup
+    mode: '0777'
+    
+- name: Настроить экспортируемую директорию
+  ansible.builtin.copy:
+    dest: /etc/exports
+    content: |
+     /srv/share/upload 10.160.107.164/24(rw,sync,root_squash)
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Перезапустить NFS-сервер
+  ansible.builtin.systemd:
+    name: nfs-kernel-server
+    state: restarted
+
+
+
+        
