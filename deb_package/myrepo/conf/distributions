@@ -1,0 +1,6 @@
+Codename: local
+Suite: stable
+Components: main
+Architectures: amd64
+SignWith: 484871F77CA18470501900109611DA6203B11878
+

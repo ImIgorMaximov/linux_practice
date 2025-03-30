@@ -1,0 +1,14 @@
+Package: nginx-custom
+Version: 1.26.3-1
+Architecture: amd64
+Maintainer: Igor Maksimov imigormaximov@gmail.com
+Depends: libc6, libpcre3, zlib1g, libssl3
+Priority: optional
+Section: web
+Filename: pool/main/n/nginx-custom/nginx-custom_1.26.3-1_amd64.deb
+Size: 1418382
+SHA256: 52cd4063458291dd1aa231d6fdc7e75b21b9dbf54e77b826228d25497c17807b
+SHA1: 1f79046bb0678331633494689ed4c8747fbfa624
+MD5sum: 64d3dc9034638600d27570f23e404bd1
+Description: Custom Nginx 1.26.3 with ngx_brotli module
+

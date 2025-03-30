@@ -1,0 +1,17 @@
+Suite: stable
+Codename: local
+Date: Sat, 29 Mar 2025 17:16:02 UTC
+Architectures: amd64
+Components: main
+MD5Sum:
+ 35ab81092813f58c16bbff6a1f7d8cb4 483 main/binary-amd64/Packages
+ d7f427e1b1acefde2b2bcc0408061123 361 main/binary-amd64/Packages.gz
+ 82a1ae90445e5284617f8a8cc3a53fa4 52 main/binary-amd64/Release
+SHA1:
+ ec507c85df2581b61c7751b1129256a8c1b87a8f 483 main/binary-amd64/Packages
+ 522cc1669e6424e3e4fc070a8a3c2ee50018c35a 361 main/binary-amd64/Packages.gz
+ 9b61d92e2c42866227d305db51276f4714da5cd9 52 main/binary-amd64/Release
+SHA256:
+ 43e3101a50099f3034f74f43596746a97107aefab1ad40e324697c84d10eab5e 483 main/binary-amd64/Packages
+ 2eb9a36f0cc01d156224531a60d83b000d95008f54b6c4d53bc8a2fa0811fd60 361 main/binary-amd64/Packages.gz
+ 5d14a4f1b270a16b7797dfa013f0d0d3325c616762714c6e9a34295a4d9be351 52 main/binary-amd64/Release
