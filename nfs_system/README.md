@@ -36,14 +36,14 @@ root@linux:~#
 
 root@linux:~# vim /etc/exports
 
-/srv/share 10.160.107.164/24(rw,sync,root_squash)
+/srv/share example.client.net/24(rw,sync,root_squash)
 
 
 5) Экспортируем ранее созданную директорию и проверяем:
 
 root@linux:~# exportfs -ra
 
-exportfs: /etc/exports [1]: Neither 'subtree_check' or 'no_subtree_check' specified for export "10.160.107.164/24:/srv/share".
+exportfs: /etc/exports [1]: Neither 'subtree_check' or 'no_subtree_check' specified for export "example.client.net/24:/srv/share".
 
   Assuming default behaviour ('no_subtree_check').
 
@@ -53,7 +53,7 @@ root@linux:~# systemctl restart nfs-kernel-server
 
 root@linux:~# exportfs -s
 
-/srv/share  10.160.107.164/24(sync,wdelay,hide,no_subtree_check,sec=sys,rw,secure,root_squash,no_all_squash)
+/srv/share  example.client.net(sync,wdelay,hide,no_subtree_check,sec=sys,rw,secure,root_squash,no_all_squash)
 
 # Настойка клиента NFS
 
@@ -63,7 +63,7 @@ admin-msk@linux:~$ sudo apt install nfs-common
 
 2) Добавление строки в /etc/fstab :
 
-root@operator:~# echo "10.160.107.239:/srv/share/ /mnt nfs vers=3,noauto,x-systemd.automount 0 0" >> /etc/fstab
+root@operator:~# echo "example.server.net:/srv/share/ /mnt nfs vers=3,noauto,x-systemd.automount 0 0" >> /etc/fstab
 
 3) Обновление сервиса и демонов :
 
@@ -79,7 +79,8 @@ root@operator:~# mount | grep mnt
 
 systemd-1 on /mnt type autofs (rw,relatime,fd=43,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=637511)
 
-10.160.107.239:/srv/share/ on /mnt type nfs (rw,relatime,vers=3,rsize=1048576,wsize=1048576,namlen=255,hard,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=10.160.107.239,mountvers=3,mountport=51053,mountproto=udp,local_lock=none,addr=10.160.107.239)
+example.server.net:/srv/share/ on /mnt type nfs (rw,relatime,vers=3,rsize=1048576,wsize=1048576,namlen=255,hard,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=example.server.net,mountvers=3,mountport=51053,mountproto=udp,local_lock=none,
+addr=example.server.net)
 
 
 # Проверка работоспособности
@@ -103,16 +104,15 @@ root@operator:~# > /mnt/upload/client_file
 root@operator:~# ls /mnt/upload/
 check_file  client_file
 
-root@operator:/mnt/upload# showmount -a 10.160.107.239
+root@operator:/mnt/upload# showmount -a example.server.net
 
-All mount points on 10.160.107.239:
+All mount points on example.server.net:
 
-10.160.107.164:/srv/share
+example.client.net:/srv/share
 
 root@operator:/mnt/upload# mount | grep mnt
 
-/home/igor/MyOffice_CO_3.3.iso on /mnt/myiso type udf (ro,relatime,iocharset=utf8)
 
 systemd-1 on /mnt type autofs (rw,relatime,fd=43,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=637511)
 
-10.160.107.239:/srv/share/ on /mnt type nfs (rw,relatime,vers=3,rsize=1048576,wsize=1048576,namlen=255,hard,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=10.160.107.239,mountvers=3,mountport=51053,mountproto=udp,local_lock=none,addr=10.160.107.239)
+example.server.net:/srv/share/ on /mnt type nfs (rw,relatime,vers=3,rsize=1048576,wsize=1048576,namlen=255,hard,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=example.server.net,mountvers=3,mountport=51053,mountproto=udp,local_lock=none,addr=example.server.net)
