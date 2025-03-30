@@ -5,6 +5,7 @@
 1) Установка необходимых зависимостей :
 
 root@linux:~# apt install -y build-essential devscripts debhelper  \
+
     libpcre3-dev zlib1g-dev libssl-dev cmake wget
 
 2) Установка исходников nginx :
@@ -14,8 +15,11 @@ root@linux:~# mkdir ~/nginx-build && cd ~/nginx-build
 root@linux:~/nginx-build# wget http://nginx.org/download/nginx-1.26.3.tar.gz
 
 --2025-03-29 16:29:07--  http://nginx.org/download/nginx-1.26.3.tar.gz
+
 Resolving nginx.org (nginx.org)... 3.125.197.172, 52.58.199.22
+
 Connecting to nginx.org (nginx.org)|3.125.197.172|:80... connected.
+
 HTTP request sent, awaiting response... 200 OK
 
 root@linux:~/nginx-build# tar xzf nginx-1.26.3.tar.gz
@@ -36,6 +40,7 @@ root@linux:~/nginx-build/nginx-1.26.3# ./configure --prefix=/etc/nginx \
     --add-module=../ngx_brotli
 
 root@linux:~/nginx-build/nginx-1.26.3# make -j$(nproc)
+
 root@linux:~/nginx-build/nginx-1.26.3# make install
 
 4) Создание структуры пакета и перемещение бинарников:

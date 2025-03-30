@@ -17,7 +17,7 @@
   ansible.builtin.copy:
     dest: /etc/exports
     content: |
-     /srv/share/upload 10.160.107.164/24(rw,sync,root_squash)
+     /srv/share/upload example.client.net/24(rw,sync,root_squash)
     owner: root
     group: root
     mode: '0644'
